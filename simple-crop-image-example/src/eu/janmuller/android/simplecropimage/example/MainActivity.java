@@ -1,10 +1,13 @@
 package eu.janmuller.android.simplecropimage.example;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+
+import eu.janmuller.android.simplecropimage.CropImage;
 
 import android.app.Activity;
 import android.content.ActivityNotFoundException;
@@ -18,13 +21,12 @@ import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
-import eu.janmuller.android.simplecropimage.CropImage;
 
 public class MainActivity extends Activity {
-
+	final int IMAGE_MAX_SIZE = 1024;
     public static final String TAG = "MainActivity";
 
-    public static final String TEMP_PHOTO_FILE_NAME = "temp_photo.jpg";
+    public static final String TEMP_PHOTO_FILE_NAME = "crop_temp_photo.jpg";
     
     public static final int REQUEST_CODE_GALLERY      = 0x1;
     public static final int REQUEST_CODE_TAKE_PICTURE = 0x2;
@@ -103,14 +105,15 @@ public class MainActivity extends Activity {
 
         Intent intent = new Intent(this, CropImage.class);
         intent.putExtra(CropImage.IMAGE_PATH, mFileTemp.getPath());
-        intent.putExtra(CropImage.SCALE, true);
-
-        intent.putExtra(CropImage.ASPECT_X, 3);
-        intent.putExtra(CropImage.ASPECT_Y, 2);
-
+        intent.putExtra(CropImage.SCALE, false);
+        intent.putExtra(CropImage.SQUARE_OFFSET, -1.0);
+        intent.putExtra(CropImage.ASPECT_X, 1);
+        intent.putExtra(CropImage.ASPECT_Y, 1);
+        
         startActivityForResult(intent, REQUEST_CODE_CROP_IMAGE);
     }
-
+    
+   
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
@@ -147,14 +150,11 @@ public class MainActivity extends Activity {
                 break;
             case REQUEST_CODE_CROP_IMAGE:
 
-                String path = data.getStringExtra(CropImage.IMAGE_PATH);
-                if (path == null) {
+                float square_offset = data.getFloatExtra(CropImage.SQUARE_OFFSET, -1);
+                Log.i("MainActivity", "just returned offset = " + String.valueOf(square_offset));
 
-                    return;
-                }
-
-                bitmap = BitmapFactory.decodeFile(mFileTemp.getPath());
-                mImageView.setImageBitmap(bitmap);
+                //bitmap = BitmapFactory.decodeFile(mFileTemp.getPath());
+                //mImageView.setImageBitmap(bitmap);
                 break;
         }
         super.onActivityResult(requestCode, resultCode, data);

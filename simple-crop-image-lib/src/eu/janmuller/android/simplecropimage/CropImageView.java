@@ -119,16 +119,17 @@ class CropImageView extends ImageViewTouchBase {
                 } else {
                     for (int i = 0; i < mHighlightViews.size(); i++) {
                         HighlightView hv = mHighlightViews.get(i);
-                        int edge = hv.getHit(event.getX(), event.getY());
+                        int edge = hv.getHit(event.getX(), event.getY());                        
                         if (edge != HighlightView.GROW_NONE) {
+                        	edge = HighlightView.MOVE;
                             mMotionEdge = edge;
                             mMotionHighlightView = hv;
                             mLastX = event.getX();
-                            mLastY = event.getY();
+                            mLastY = event.getY();                            
                             mMotionHighlightView.setMode(
                                     (edge == HighlightView.MOVE)
                                             ? HighlightView.ModifyMode.Move
-                                            : HighlightView.ModifyMode.Grow);
+                                           : HighlightView.ModifyMode.Grow);
                             break;
                         }
                     }

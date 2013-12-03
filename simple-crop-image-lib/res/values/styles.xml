@@ -11,5 +11,9 @@
         <item name="android:layout_weight">1</item>
         <item name="android:background">@drawable/selector_crop_button</item>
     </style>
+    <color name="cmd_next_down">#5d1e31 </color>
+    <color name="cmd_next">#ef5181</color>
+    <color name="cmd_back_down">#004746</color>
+    <color name="cmd_back">#02c8c8</color>
 
 </resources>

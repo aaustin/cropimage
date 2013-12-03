@@ -20,17 +20,18 @@
             android:orientation="horizontal"
             android:paddingLeft="10dip"
             android:paddingRight="10dip"
-            android:layout_alignParentBottom="true"
+            android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true">
 
 
         <Button
                 android:layout_alignParentLeft="true"
                 android:id="@+id/discard"
-                android:layout_width="80dp"
+                android:layout_width="100dp"
                 android:layout_height="fill_parent"
-                style="@style/CropButton"
+                android:background="@drawable/cmd_back_lib"
                 android:text="@string/cancel"
+                android:textColor="#FFFFFFFF"
                 />
 
         <ImageButton
@@ -52,11 +53,12 @@
                 />
         <Button
                 android:id="@+id/save"
-                android:layout_width="80dp"
+                android:layout_width="100dp"
                 android:layout_height="fill_parent"
                 android:layout_toRightOf="@id/rotateRight"
-                style="@style/CropButton"
+                android:background="@drawable/cmd_next_lib"
                 android:text="@string/save"
+                android:textColor="#FFFFFFFF"
                 />
 
     </RelativeLayout>
